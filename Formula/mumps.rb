@@ -1,8 +1,8 @@
 class Mumps < Formula
   desc "Parallel Sparse Direct Solver"
   homepage "http://mumps-solver.org"
-  # url "http://mumps.enseeiht.fr/MUMPS_5.1.2.tar.gz"
-  # sha256 "eb345cda145da9aea01b851d17e54e7eef08e16bfa148100ac1f7f046cd42ae9"
+  url "http://mumps.enseeiht.fr/MUMPS_5.1.2.tar.gz"
+  sha256 "eb345cda145da9aea01b851d17e54e7eef08e16bfa148100ac1f7f046cd42ae9"
   # url "http://mumps.enseeiht.fr/MUMPS_5.1.1.tar.gz"
   # mirror "http://graal.ens-lyon.fr/MUMPS/MUMPS_5.1.1.tar.gz"
   # sha256 "36bc7a9180c7e6580d36c9243db47f0423dfa0d6e97f0a45233c76ab2ef9ad08"
