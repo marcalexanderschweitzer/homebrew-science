@@ -1,9 +1,11 @@
 class SuperluDist < Formula
   desc "Distributed LU factorization for large linear systems"
   homepage "http://crd-legacy.lbl.gov/~xiaoye/SuperLU/"
-  url "http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_5.1.0.tar.gz"
-  sha256 "30ac554a992441e6041c6fb07772da4fa2fa6b30714279de03573c2cad6e4b60"
-  revision 3
+  # url "http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_5.1.0.tar.gz"
+  # sha256 "30ac554a992441e6041c6fb07772da4fa2fa6b30714279de03573c2cad6e4b60"
+  # revision 3
+  url "http://crd-legacy.lbl.gov/~xiaoye/SuperLU/superlu_dist_5.3.0.tar.gz"
+  sha256 "de40808a7916f2ef002e0c1c17d24b556b5ef7af9478541a0faacd1d318c4549"
 
   bottle :disable, "needs to be rebuilt with latest open-mpi"
 

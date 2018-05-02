@@ -1,9 +1,11 @@
  class Petsc < Formula
   desc ""
   homepage "https://www.mcs.anl.gov/petsc/"
-  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.8.3.tar.gz"
-  sha256 "5509e35d55d5ce9e92dbe7a83f5e509865aea2a4cc2d9f16f72b7a5ceaafed96"
-  
+  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.8.3.tar.gz"
+  # sha256 "5509e35d55d5ce9e92dbe7a83f5e509865aea2a4cc2d9f16f72b7a5ceaafed96"
+  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.1.tar.gz"
+  sha256 "8e3455d2ef0aed637d4d8033dab752551e049a088f893610b799aa3188a5c246"
+
   depends_on "cmake" => :build
   depends_on "open-mpi" => [:cc, :cxx, :f77, :f90]
   depends_on "gcc"
@@ -19,7 +21,7 @@
   depends_on "parmetis"     => :recommended
   depends_on "scalapack"    => [:recommended] + openblasdep
   depends_on "mumps"        => [:recommended] + openblasdep # mumps is built with mpi by default
-  depends_on "hypre"        => [:recommended] + openblasdep
+  # depends_on "hypre"        => [:recommended] + openblasdep
   depends_on "sundials"     => [:recommended] + openblasdep
   depends_on "hdf5"         => ["with-mpi", :recommended]
   depends_on "hwloc"        => :recommended
@@ -105,7 +107,8 @@
     # TODO: compile separately (https://bitbucket.org/petsc/pkg-ml/commits/tag/v6.2-p3)
     # --with-ml-include=/path/to/ml/include --with-ml-lib=/path/to/ml/liblibml.a
     args_real << "--download-ml=1" if build.with? "ml"
-    args_real << "--with-hypre-dir=#{oprefix("hypre")}" if build.with? "hypre"
+    args_real << "--download-hypre" if build.with? "hypre"
+    # args_real << "--with-hypre-dir=#{oprefix("hypre")}" if build.with? "hypre"
     args_real << "--with-hwloc-dir=#{oprefix("hwloc")}" if build.with? "hwloc"
     system "./configure", *(args + args_real)
     system "make", "all"

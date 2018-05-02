@@ -4,8 +4,11 @@
  class Slepc < Formula
   desc ""
   homepage ""
-  url "http://slepc.upv.es/download/distrib/slepc-3.8.2.tar.gz"
-  sha256 "1e7d20d20eb26da307d36017461fe4a55f40e947e232739179dbe6412e22ed13"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.8.2.tar.gz"
+  # sha256 "1e7d20d20eb26da307d36017461fe4a55f40e947e232739179dbe6412e22ed13"
+  url "http://slepc.upv.es/download/distrib/slepc-3.9.0.tar.gz"
+  sha256 "1f3930db56b4065aaf214ea758ddff1a70bf19d45544cbdfd19d2787db4bfe0b"
+
 
   bottle :disable, "needs to be rebuilt with latest open-mpi"
 
