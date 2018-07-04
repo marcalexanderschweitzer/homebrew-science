@@ -3,8 +3,13 @@
   homepage "https://www.mcs.anl.gov/petsc/"
   # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.8.3.tar.gz"
   # sha256 "5509e35d55d5ce9e92dbe7a83f5e509865aea2a4cc2d9f16f72b7a5ceaafed96"
-  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.1.tar.gz"
-  sha256 "8e3455d2ef0aed637d4d8033dab752551e049a088f893610b799aa3188a5c246"
+  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.1.tar.gz"
+  # sha256 "8e3455d2ef0aed637d4d8033dab752551e049a088f893610b799aa3188a5c246"
+  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.2.tar.gz"
+  # sha256 "65100189796f05991bb2e746f56eec27f8425f6eb901f8f08459ffd2a5e6c69a"
+  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.3.tar.gz"
+  sha256 "8828fe1221f038d78a8eee3325cdb22ad1055a2f0671871815ee9f47365f93bb"
+
 
   depends_on "cmake" => :build
   depends_on "open-mpi" => [:cc, :cxx, :f77, :f90]
@@ -16,11 +21,11 @@
   openblasdep = (build.with? "openblas") ? ["with-openblas"] : []
 
   depends_on "superlu"      => [:recommended] + openblasdep
-  depends_on "superlu_dist" => [:recommended] + openblasdep
+  depends_on "marcalexanderschweitzer/science/superlu_dist" => [:recommended] + openblasdep
   depends_on "metis"        => :recommended
-  depends_on "parmetis"     => :recommended
+  depends_on "marcalexanderschweitzer/science/parmetis"     => :recommended
   depends_on "scalapack"    => [:recommended] + openblasdep
-  depends_on "mumps"        => [:recommended] + openblasdep # mumps is built with mpi by default
+  # depends_on "marcalexanderschweitzer/science/mumps"        => [:recommended] + openblasdep # mumps is built with mpi by default
   # depends_on "hypre"        => [:recommended] + openblasdep
   depends_on "sundials"     => [:recommended] + openblasdep
   depends_on "hdf5"         => ["with-mpi", :recommended]
@@ -84,7 +89,8 @@
     args << "--with-metis-dir=#{oprefix("metis")}" if build.with? "metis"
     args << "--with-parmetis-dir=#{oprefix("parmetis")}" if build.with? "parmetis"
     args << "--with-scalapack-dir=#{oprefix("scalapack")}" if build.with? "scalapack"
-    args << "--with-mumps-dir=#{oprefix("mumps")}/libexec" if build.with? "mumps"
+    # args << "--with-mumps-dir=#{oprefix("mumps")}/libexec" if build.with? "mumps"
+    args << "--download-mumps" if build.with? "mumps"
     args << "--with-x=0" if build.without? "x11"
 
     # If building with openblas, need to provide lapack as well

@@ -6,8 +6,12 @@
   homepage ""
   # url "http://slepc.upv.es/download/distrib/slepc-3.8.2.tar.gz"
   # sha256 "1e7d20d20eb26da307d36017461fe4a55f40e947e232739179dbe6412e22ed13"
-  url "http://slepc.upv.es/download/distrib/slepc-3.9.0.tar.gz"
-  sha256 "1f3930db56b4065aaf214ea758ddff1a70bf19d45544cbdfd19d2787db4bfe0b"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.9.0.tar.gz"
+  # sha256 "1f3930db56b4065aaf214ea758ddff1a70bf19d45544cbdfd19d2787db4bfe0b"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.9.1.tar.gz"
+  # sha256 "e174ea7c127d9161eef976b0288f0c56d443a58d6ab2dc8af1e8bd66f156ce17"
+  url "http://slepc.upv.es/download/distrib/slepc-3.9.2.tar.gz"
+  sha256 "247585b3f8c10bf50b9464cb8ef7b5f22bead6f96524384897a37ec4146eb03e"
 
 
   bottle :disable, "needs to be rebuilt with latest open-mpi"
@@ -23,7 +27,7 @@
 
   openblasdep = (build.with? "openblas") ? ["with-openblas"] : []
 
-  depends_on "petsc" => openblasdep
+  depends_on "marcalexanderschweitzer/science/petsc" => openblasdep
   depends_on "open-mpi" => [:cc, :f90]
   depends_on "gcc"
   depends_on "hdf5"
