@@ -22,9 +22,9 @@ class Mumps < Formula
     end
   end
   depends_on "metis"    => :optional if build.without? "open-mpi"
-  depends_on "parmetis" => :optional if build.with? "open-mpi"
-  depends_on "scotch5"  => :optional
-  depends_on "scotch"   => :optional
+  depends_on "marcalexanderschweitzer/science/parmetis" => :optional if build.with? "open-mpi"
+  # depends_on "scotch5"  => :optional
+  # depends_on "scotch"   => :optional
 
   resource "mumps_simple" do
     url "https://github.com/dpo/mumps_simple/archive/v0.4.tar.gz"
@@ -51,37 +51,37 @@ class Mumps < Formula
     makefile = (build.with? "open-mpi") ? "Makefile.G95.PAR" : "Makefile.G95.SEQ"
     cp "Make.inc/" + makefile, "Makefile.inc"
 
-    if build.with? "scotch5"
-      make_args += ["SCOTCHDIR=#{Formula["scotch5"].opt_prefix}",
-                    "ISCOTCH=-I#{Formula["scotch5"].opt_include}"]
+    # if build.with? "scotch5"
+    #   make_args += ["SCOTCHDIR=#{Formula["scotch5"].opt_prefix}",
+    #                 "ISCOTCH=-I#{Formula["scotch5"].opt_include}"]
 
-      if build.with? "open-mpi"
-        scotch_libs = "LSCOTCH=-L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr"
-        scotch_libs += " -lptscotchparmetis" if build.with? "parmetis"
-        make_args << scotch_libs
-        orderingsf << " -Dptscotch"
-      else
-        scotch_libs = "LSCOTCH=-L$(SCOTCHDIR) -lesmumps -lscotch -lscotcherr"
-        scotch_libs += " -lscotchmetis" if build.with? "metis"
-        make_args << scotch_libs
-        orderingsf << " -Dscotch"
-      end
-    elsif build.with? "scotch"
-      make_args += ["SCOTCHDIR=#{Formula["scotch"].opt_prefix}",
-                    "ISCOTCH=-I#{Formula["scotch"].opt_include}"]
+    #   if build.with? "open-mpi"
+    #     scotch_libs = "LSCOTCH=-L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr"
+    #     scotch_libs += " -lptscotchparmetis" if build.with? "parmetis"
+    #     make_args << scotch_libs
+    #     orderingsf << " -Dptscotch"
+    #   else
+    #     scotch_libs = "LSCOTCH=-L$(SCOTCHDIR) -lesmumps -lscotch -lscotcherr"
+    #     scotch_libs += " -lscotchmetis" if build.with? "metis"
+    #     make_args << scotch_libs
+    #     orderingsf << " -Dscotch"
+    #   end
+    # elsif build.with? "scotch"
+    #   make_args += ["SCOTCHDIR=#{Formula["scotch"].opt_prefix}",
+    #                 "ISCOTCH=-I#{Formula["scotch"].opt_include}"]
 
-      if build.with? "open-mpi"
-        scotch_libs = "LSCOTCH=-L$(SCOTCHDIR)/lib -lptscotch -lptscotcherr -lptscotcherrexit -lscotch"
-        scotch_libs += "-lptscotchparmetis" if build.with? "parmetis"
-        make_args << scotch_libs
-        orderingsf << " -Dptscotch"
-      else
-        scotch_libs = "LSCOTCH=-L$(SCOTCHDIR) -lscotch -lscotcherr -lscotcherrexit"
-        scotch_libs += "-lscotchmetis" if build.with? "metis"
-        make_args << scotch_libs
-        orderingsf << " -Dscotch"
-      end
-    end
+    #   if build.with? "open-mpi"
+    #     scotch_libs = "LSCOTCH=-L$(SCOTCHDIR)/lib -lptscotch -lptscotcherr -lptscotcherrexit -lscotch"
+    #     scotch_libs += "-lptscotchparmetis" if build.with? "parmetis"
+    #     make_args << scotch_libs
+    #     orderingsf << " -Dptscotch"
+    #   else
+    #     scotch_libs = "LSCOTCH=-L$(SCOTCHDIR) -lscotch -lscotcherr -lscotcherrexit"
+    #     scotch_libs += "-lscotchmetis" if build.with? "metis"
+    #     make_args << scotch_libs
+    #     orderingsf << " -Dscotch"
+    #   end
+    # end
 
     if build.with? "parmetis"
       make_args += ["LMETISDIR=#{Formula["parmetis"].opt_lib}",
