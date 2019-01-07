@@ -10,8 +10,10 @@
   # sha256 "1f3930db56b4065aaf214ea758ddff1a70bf19d45544cbdfd19d2787db4bfe0b"
   # url "http://slepc.upv.es/download/distrib/slepc-3.9.1.tar.gz"
   # sha256 "e174ea7c127d9161eef976b0288f0c56d443a58d6ab2dc8af1e8bd66f156ce17"
-  url "http://slepc.upv.es/download/distrib/slepc-3.9.2.tar.gz"
-  sha256 "247585b3f8c10bf50b9464cb8ef7b5f22bead6f96524384897a37ec4146eb03e"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.9.2.tar.gz"
+  # sha256 "247585b3f8c10bf50b9464cb8ef7b5f22bead6f96524384897a37ec4146eb03e"
+  url "http://slepc.upv.es/download/distrib/slepc-3.10.1.tar.gz"
+  sha256 "f64787c8c2ab3d2f6db3c67d2bfe6ee84f741ce3dfde1d2f8221e131820a12a1"
 
 
   bottle :disable, "needs to be rebuilt with latest open-mpi"
