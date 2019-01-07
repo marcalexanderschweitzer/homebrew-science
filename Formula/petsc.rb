@@ -7,10 +7,10 @@
   # sha256 "8e3455d2ef0aed637d4d8033dab752551e049a088f893610b799aa3188a5c246"
   # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.2.tar.gz"
   # sha256 "65100189796f05991bb2e746f56eec27f8425f6eb901f8f08459ffd2a5e6c69a"
-  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.3.tar.gz"
-  # sha256 "8828fe1221f038d78a8eee3325cdb22ad1055a2f0671871815ee9f47365f93bb"
-  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.10.3.tar.gz"
-  sha256 "f03650ea5592313dd2b8be7ae9cc498369da660185b58f9e98689a9bc355e982"
+  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.3.tar.gz"
+  sha256 "8828fe1221f038d78a8eee3325cdb22ad1055a2f0671871815ee9f47365f93bb"
+  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.10.3.tar.gz"
+  # sha256 "f03650ea5592313dd2b8be7ae9cc498369da660185b58f9e98689a9bc355e982"
 
 
   depends_on "cmake" => :build
@@ -85,6 +85,7 @@
     end
 
     args << "--with-fftw-dir=#{oprefix("fftw")}" if build.with? "fftw"
+    # args << "--with-zlib-dir=/usr/lib"
     args << "--with-netcdf-dir=#{oprefix("netcdf")}" if build.with? "netcdf"
     args << "--with-suitesparse-dir=#{oprefix("suite-sparse")}" if build.with? "suite-sparse"
     args << "--with-hdf5-dir=#{oprefix("hdf5")}" if build.with? "hdf5"
