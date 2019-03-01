@@ -48,7 +48,6 @@
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
-
     system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-cxx-dialect=C++11",
                           "--prefix=#{prefix}/#{petsc_arch_complex}",
