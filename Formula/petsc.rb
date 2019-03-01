@@ -24,9 +24,6 @@
   depends_on "superlu"
   depends_on "suite-sparse"
 
-  conflicts_with "petsc-complex", :because => "petsc must be installed with either real or complex support, not both"
-
-
   def install
     ENV["CC"] = "mpicc"
     ENV["CXX"] = "mpicxx"

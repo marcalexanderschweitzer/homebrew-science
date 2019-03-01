@@ -4,67 +4,47 @@
  class Slepc < Formula
   desc ""
   homepage ""
-  # url "http://slepc.upv.es/download/distrib/slepc-3.8.2.tar.gz"
-  # sha256 "1e7d20d20eb26da307d36017461fe4a55f40e947e232739179dbe6412e22ed13"
-  # url "http://slepc.upv.es/download/distrib/slepc-3.9.0.tar.gz"
-  # sha256 "1f3930db56b4065aaf214ea758ddff1a70bf19d45544cbdfd19d2787db4bfe0b"
-  # url "http://slepc.upv.es/download/distrib/slepc-3.9.1.tar.gz"
-  # sha256 "e174ea7c127d9161eef976b0288f0c56d443a58d6ab2dc8af1e8bd66f156ce17"
-  url "http://slepc.upv.es/download/distrib/slepc-3.9.2.tar.gz"
-  sha256 "247585b3f8c10bf50b9464cb8ef7b5f22bead6f96524384897a37ec4146eb03e"
-  # url "http://slepc.upv.es/download/distrib/slepc-3.10.1.tar.gz"
-  # sha256 "f64787c8c2ab3d2f6db3c67d2bfe6ee84f741ce3dfde1d2f8221e131820a12a1"
+  url "http://slepc.upv.es/download/distrib/slepc-3.10.2.tar.gz"
+  sha256 "0594972293f6586458a54b7c1e1121b311a9c9449060355d52bb3bf09ad6812b"
 
-
-  bottle :disable, "needs to be rebuilt with latest open-mpi"
-
-  deprecated_option "complex" => "with-complex"
-
-  option "with-complex", "Use complex version by default. Otherwise, real-valued version will be symlinked"
-  option "without-test", "Skip run-time tests (not recommended)"
-  option "with-openblas", "Install dependencies with openblas"
   option "with-blopex", "Download blopex library"
 
-  deprecated_option "without-check" => "without-test"
-
-  openblasdep = (build.with? "openblas") ? ["with-openblas"] : []
-
-  depends_on "marcalexanderschweitzer/science/petsc" => openblasdep
-  depends_on "open-mpi" => [:cc, :f90]
+  depends_on "marcalexanderschweitzer/science/petsc"
+  depends_on "open-mpi"
   depends_on "gcc"
   depends_on "hdf5"
-  depends_on :x11 => :optional
-  depends_on "arpack" => [:recommended, "with-mpi"] + openblasdep
+  depends_on "arpack" => ["with-mpi"]
 
-  def install
-    ENV.deparallelize
+    def install
+    ENV["CC"] = "mpicc"
+    ENV["CXX"] = "mpicxx"
+    ENV["F77"] = "mpif77"
+    ENV["FC"] = "mpif90"
 
-    # these must be consistent with petsc.rb
-    petsc_arch_real = "real"
-    petsc_arch_complex = "complex"
-
-    ENV["SLEPC_DIR"] = Dir.getwd
-    args = ["--with-clean=true"]
-    args << "--with-arpack-dir=#{Formula["arpack"].opt_lib}" << "--with-arpack-flags=-lparpack,-larpack" if build.with? "arpack"
-    args << "--download-blopex" if build.with? "blopex"
-
-    # real
-    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{petsc_arch_real}"
-    system "./configure", "--prefix=#{prefix}/#{petsc_arch_real}", *args
+    arch_real = "real"
+    ENV["PETSC_ARCH"] = arch_real
+    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
+    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+                          "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+                          "--prefix=#{prefix}/#{arch_real}",
+                          "--with-clean=true"
     system "make"
     system "make", "test" if build.with? "test"
     system "make", "install"
 
-    # complex
-    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{petsc_arch_complex}"
-    system "./configure", "--prefix=#{prefix}/#{petsc_arch_complex}", *args
+    arch_real = "complex"
+    ENV["PETSC_ARCH"] = arch_complex
+    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
+    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+                          "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+                          "--prefix=#{prefix}/#{arch_complex}",
+                          "--with-clean=true"
     system "make"
-    # TODO: investigate why complex tests fail to run on Linuxbrew
     system "make", "test" if build.with? "test"
     system "make", "install"
 
     # Link what we need.
-    petsc_arch = ((build.include? "complex") ? petsc_arch_complex : petsc_arch_real)
+    petsc_arch = ((build.include? "complex") ? arch_complex : arch_real)
 
     include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*.h"],
                             "#{prefix}/#{petsc_arch}/finclude", "#{prefix}/#{petsc_arch}/slepc-private"
