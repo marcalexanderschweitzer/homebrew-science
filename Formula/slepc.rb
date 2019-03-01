@@ -20,7 +20,7 @@
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_real}"
+    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
     system "./configure", "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
                           "--prefix=#{prefix}/#{arch_real}",
                           "--with-clean=true"
