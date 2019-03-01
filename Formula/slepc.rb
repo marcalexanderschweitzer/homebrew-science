@@ -28,7 +28,7 @@
     system "make", "test" if build.with? "test"
     system "make", "install"
 
-    arch_real = "complex"
+    arch_complex = "complex"
     # ENV["PETSC_ARCH"] = arch_complex
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_complex}"
     system "./configure", "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
@@ -39,7 +39,7 @@
     system "make", "install"
 
     # Link what we need.
-    petsc_arch = ((build.include? "complex") ? arch_complex : arch_real)
+    petsc_arch = arch_real
 
     include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*.h"],
                             "#{prefix}/#{petsc_arch}/finclude", "#{prefix}/#{petsc_arch}/slepc-private"
