@@ -16,16 +16,12 @@
   depends_on "arpack" => ["with-mpi"]
 
     def install
-    ENV["CC"] = "mpicc"
-    ENV["CXX"] = "mpicxx"
-    ENV["F77"] = "mpif77"
-    ENV["FC"] = "mpif90"
+    ENV["SLEPC_DIR"] = Dir.getwd
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
-    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
-                          "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+    system "./configure", "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
                           "--prefix=#{prefix}/#{arch_real}",
                           "--with-clean=true"
     system "make"
@@ -35,8 +31,7 @@
     arch_real = "complex"
     ENV["PETSC_ARCH"] = arch_complex
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
-    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
-                          "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+    system "./configure", "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
                           "--prefix=#{prefix}/#{arch_complex}",
                           "--with-clean=true"
     system "make"
