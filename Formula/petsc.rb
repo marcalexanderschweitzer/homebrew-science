@@ -32,9 +32,16 @@
     ENV["CXX"] = "mpicxx"
     ENV["F77"] = "mpif77"
     ENV["FC"] = "mpif90"
+    ENV["PETSC_DIR"] = Dir.getwd
+
+    arch_real = "real"
+    ENV["PETSC_ARCH"] = arch_real
     system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+                          "--with-shared-libraries=1",
+                          "--with-pthread=0",
+                          "--with-openmp=0",
                           "--with-cxx-dialect=C++11",
-                          "--prefix=#{prefix}/real",
+                          "--prefix=#{prefix}/#{arch_real}",
                           "--with-debugging=0",
                           "--with-scalar-type=real",
                           "--with-scalapack",
@@ -46,9 +53,17 @@
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
+
+    system "make", "distclean"
+
+    arch_complex = "complex"
+    ENV["PETSC_ARCH"] = arch_complex
     system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+                          "--with-shared-libraries=1",
+                          "--with-pthread=0",
+                          "--with-openmp=0",
                           "--with-cxx-dialect=C++11",
-                          "--prefix=#{prefix}/complex",
+                          "--prefix=#{prefix}/#{arch_complex}",
                           "--with-debugging=0",
                           "--with-scalar-type=complex",
                           "--with-scalapack",
@@ -57,6 +72,13 @@
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
+
+    petsc_arch = arch_real
+    include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*h"],
+                                "#{prefix}/#{petsc_arch}/include/finclude",
+                                "#{prefix}/#{petsc_arch}/include/petsc-private"
+    lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
+    pkgshare.install_symlink Dir["#{prefix}/#{petsc_arch}/share/*"]
   end
 
   test do
