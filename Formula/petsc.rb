@@ -26,8 +26,6 @@
 
   conflicts_with "petsc-complex", :because => "petsc must be installed with either real or complex support, not both"
 
-  petsc_arch_real = "real"
-  petsc_arch_complex = "complex"
 
   def install
     ENV["CC"] = "mpicc"
@@ -36,7 +34,7 @@
     ENV["FC"] = "mpif90"
     system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-cxx-dialect=C++11",
-                          "--prefix=#{prefix}/#{petsc_arch_real}",
+                          "--prefix=#{prefix}/real",
                           "--with-debugging=0",
                           "--with-scalar-type=real",
                           "--with-scalapack",
@@ -50,7 +48,7 @@
     system "make", "install"
     system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-cxx-dialect=C++11",
-                          "--prefix=#{prefix}/#{petsc_arch_complex}",
+                          "--prefix=#{prefix}/complex",
                           "--with-debugging=0",
                           "--with-scalar-type=complex",
                           "--with-scalapack",
