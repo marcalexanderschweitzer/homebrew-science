@@ -18,12 +18,12 @@
   depends_on "hdf5"
   depends_on "hwloc"
   depends_on "metis"
-  # depends_on "netcdf"
   depends_on "open-mpi"
   depends_on "scalapack"
-  # depends_on "superlu"
-  depends_on "suite-sparse"
   depends_on "marcalexanderschweitzer/science/parmetis"
+  # depends_on "netcdf"
+  # depends_on "superlu"
+  # depends_on "suite-sparse"
 
   def install
     ENV["CC"] = "mpicc"
@@ -49,6 +49,8 @@
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
                           # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          "--with-netcdf=0",
+                          "--with-suitesparse=0",
                           "--with-sundials=0",
                           "--download-superlu_dist", 
                           "--download-mumps",
@@ -77,9 +79,13 @@
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
                           # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          "--with-netcdf=0",
+                          "--with-suitesparse=0",
                           "--with-sundials=0",
                           "--download-superlu_dist", 
                           "--download-mumps",
+                          "--download-hypre", 
+                          "--download-ml", 
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
