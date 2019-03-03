@@ -21,7 +21,7 @@
   # depends_on "netcdf"
   depends_on "open-mpi"
   depends_on "scalapack"
-  depends_on "superlu"
+  # depends_on "superlu"
   depends_on "suite-sparse"
   depends_on "marcalexanderschweitzer/science/parmetis"
 
@@ -48,7 +48,7 @@
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
-                          "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
                           "--with-sundials=0",
                           "--download-superlu_dist", 
                           "--download-mumps",
@@ -76,7 +76,7 @@
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
-                          "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
                           "--with-sundials=0",
                           "--download-superlu_dist", 
                           "--download-mumps",
