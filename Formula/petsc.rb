@@ -84,8 +84,8 @@
                           "--with-sundials=0",
                           "--download-superlu_dist", 
                           "--download-mumps",
-                          "--download-hypre", 
-                          "--download-ml", 
+                          # "--download-hypre", 
+                          # "--download-ml", 
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
