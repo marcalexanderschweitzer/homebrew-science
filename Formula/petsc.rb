@@ -18,7 +18,7 @@
   depends_on "hdf5"
   depends_on "hwloc"
   depends_on "metis"
-  depends_on "netcdf"
+  # depends_on "netcdf"
   depends_on "open-mpi"
   depends_on "scalapack"
   depends_on "superlu"
@@ -43,8 +43,7 @@
                           "--with-debugging=0",
                           "--with-scalar-type=real",
                           "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
-                          "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
-                          "--with-hdf5-dir=#{Formula["hdf5"].opt_prefix}",
+                          # "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
                           "--with-hdf5-dir=#{Formula["hdf5"].opt_prefix}",
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
@@ -72,10 +71,9 @@
                           "--with-debugging=0",
                           "--with-scalar-type=complex",
                           "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
-                          "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
+                          # "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
                           "--with-hdf5-dir=#{Formula["hdf5"].opt_prefix}",
-                          "--with-hdf5-dir=#{Formula["hdf5"].opt_prefix}",
-                          "--with-suitesparse-dir=#{Formula["suite_sparse"].opt_prefix}",
+                          "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
                           "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
