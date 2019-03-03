@@ -23,6 +23,7 @@
   depends_on "scalapack"
   depends_on "superlu"
   depends_on "suite-sparse"
+  depends_on "sundials"
 
   def install
     ENV["CC"] = "mpicc"
@@ -42,11 +43,11 @@
                           "--with-debugging=0",
                           "--with-scalar-type=real",
                           "--with-scalapack",
+                          "--with-sundials",
                           "--download-superlu_dist", 
                           "--download-mumps",
                           "--download-hypre", 
                           "--download-ml", 
-                          "--download-sundials",
                           "--with-x=0"
     system "make", "all"
     system "make", "install"
@@ -64,6 +65,7 @@
                           "--with-debugging=0",
                           "--with-scalar-type=complex",
                           "--with-scalapack",
+                          "--with-sundials",
                           "--download-superlu_dist", 
                           "--download-mumps",
                           "--with-x=0"
