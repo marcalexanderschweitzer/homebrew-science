@@ -30,7 +30,6 @@ class Hdf5 < Formula
       --with-szlib=#{Formula["szip"].opt_prefix}
       --enable-build-mode=production
       --enable-fortran
-      --enable-cxx
       --enable-parallel
     ]
 
