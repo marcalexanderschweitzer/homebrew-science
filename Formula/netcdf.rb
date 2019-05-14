@@ -8,7 +8,7 @@ class Netcdf < Formula
   depends_on "open-mpi" => :build
   depends_on "cmake" => :build
   depends_on "gcc" # for gfortran
-  depends_on "hdf5"
+  depends_on "marcalexanderschweitzer/science/hdf5"
 
   resource "cxx" do
     url "https://github.com/Unidata/netcdf-cxx4/archive/v4.3.0.tar.gz"
