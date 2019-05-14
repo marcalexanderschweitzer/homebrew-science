@@ -13,6 +13,11 @@ class Hdf5 < Formula
   depends_on "szip"
 
   def install
+    ENV["CC"] = "mpicc"
+    ENV["CXX"] = "mpicxx"
+    ENV["F77"] = "mpif77"
+    ENV["FC"] = "mpif90"
+
     inreplace %w[c++/src/h5c++.in fortran/src/h5fc.in tools/src/misc/h5cc.in],
       "${libdir}/libhdf5.settings",
       "#{pkgshare}/libhdf5.settings"
