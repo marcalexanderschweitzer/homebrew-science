@@ -6,9 +6,10 @@
   homepage ""
   # url "http://slepc.upv.es/download/distrib/slepc-3.10.2.tar.gz"
   # sha256 "0594972293f6586458a54b7c1e1121b311a9c9449060355d52bb3bf09ad6812b"
-
-  url "http://slepc.upv.es/download/distrib/slepc-3.11.1.tar.gz"
-  sha256 "4816070d4ecfeea6212c6944cee22dc7b4763df1eaf6ab7847cc5ac5132608fb"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.11.1.tar.gz"
+  # sha256 "4816070d4ecfeea6212c6944cee22dc7b4763df1eaf6ab7847cc5ac5132608fb"
+  url "http://slepc.upv.es/download/distrib/slepc-3.11.2.tar.gz"
+  sha256 "cd6a73ac0c9f689c12f2987000a7a28fa7df53fdc069fb59a2bb148699e741dd"
 
   option "with-blopex", "Download blopex library"
 

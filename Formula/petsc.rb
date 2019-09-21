@@ -13,8 +13,10 @@
   # sha256 "f03650ea5592313dd2b8be7ae9cc498369da660185b58f9e98689a9bc355e982"
   # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.10.4.tar.gz"
   # sha256 "1921b2208801d6e03b44035d65d6c11901dbfa6c13a5a0f23864c04f4832613a"
-  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.11.1.tar.gz"
-  sha256 "d14ffc082bfa83cd1fc5a0486d264ef19e2e43356ed768918eaa028ebb9be9d4"
+  # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.11.1.tar.gz"
+  # sha256 "d14ffc082bfa83cd1fc5a0486d264ef19e2e43356ed768918eaa028ebb9be9d4"
+  url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.11.3.tar.gz"
+  sha256 "8bee4a5ad37af85938ae755be182dcea255888b4f8b3d976bedc57e959280622"
 
   depends_on "cmake"
   depends_on "hdf5"
