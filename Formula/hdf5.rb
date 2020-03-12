@@ -12,7 +12,10 @@ class Hdf5 < Formula
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
+  depends_on "gcc" # for gfortran
   depends_on "szip"
+
+  uses_from_macos "zlib"
 
   def install
     ENV["CC"] = "mpicc"
@@ -20,7 +23,7 @@ class Hdf5 < Formula
     ENV["F77"] = "mpif77"
     ENV["FC"] = "mpif90"
 
-    inreplace %w[c++/src/h5c++.in fortran/src/h5fc.in tools/src/misc/h5cc.in],
+    inreplace %w[c++/src/h5c++.in fortran/src/h5fc.in bin/h5cc.in],
       "${libdir}/libhdf5.settings",
       "#{pkgshare}/libhdf5.settings"
 
