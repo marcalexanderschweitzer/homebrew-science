@@ -28,6 +28,11 @@ class Netcdf < Formula
   end
 
   def install
+    ENV["CC"] = "mpicc"
+    ENV["CXX"] = "mpicxx"
+    ENV["F77"] = "mpif77"
+    ENV["FC"] = "mpif90"
+
     ENV.deparallelize
 
     common_args = std_cmake_args << "-DBUILD_TESTING=OFF"
