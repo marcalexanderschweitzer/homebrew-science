@@ -20,7 +20,7 @@
   # url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.12.1.tar.gz"
   # sha256 "28c25cde288f689605f2160613feef45863c9ef3ceb2d1a44c2226b779938781"
   url "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.12.4.tar.gz"
-  sha256 "56a941130da93bbacb3cfa74dcacea1e3cd8e36a0341f9ced09977b1457084c3"
+  sha256 "800a965dd01adac099a186588cda68e4fcb224af326d8aaf55978361c019258f"
 
   depends_on "cmake"
   depends_on "hdf5"
