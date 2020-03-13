@@ -31,7 +31,7 @@ class Hdf5 < Formula
               "settingsdir=$(libdir)",
               "settingsdir=#{pkgshare}"
 
-    system "autoreconf", "-fiv"
+    system "autoreconf", "-fiv", "--with-default-api-version=v110"
 
     args = %W[
       --disable-dependency-tracking
