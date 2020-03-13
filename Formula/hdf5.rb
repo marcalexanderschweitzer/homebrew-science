@@ -31,7 +31,7 @@ class Hdf5 < Formula
               "settingsdir=$(libdir)",
               "settingsdir=#{pkgshare}"
 
-    system "autoreconf", "-fiv", "--with-default-api-version=v110"
+    system "autoreconf", "-fiv"
 
     args = %W[
       --disable-dependency-tracking
@@ -40,6 +40,7 @@ class Hdf5 < Formula
       --with-szlib=#{Formula["szip"].opt_prefix}
       --enable-build-mode=production
       --enable-parallel
+      --with-default-api-version=v110
     ]
 
     system "./configure", *args
