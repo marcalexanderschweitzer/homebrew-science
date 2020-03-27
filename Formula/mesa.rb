@@ -43,31 +43,8 @@ class Mesa < Formula
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
-      # out_file = File.new("custom-llvm.ini", "w")
-      # out_file.puts("[binaries]")
-      # out_file.puts("llvm-config = '/usr/local/opt/llvm/bin/llvm-config'")
-      # out_file.close
-
-      # system "meson", "-Dbuildtype=plain", "-Db_ndebug=true",
-      # "-Dplatforms=surfaceless", "-Dglx=disabled", 
-      system "meson", "--prefix=#{prefix}", 
-    "-Dbuildtype=plain", "-Db_ndebug=true",
-    "-Dplatforms=",
-    "-Dopengl=true",
-    "-Dgles1=false",
-    "-Dgbm=false",
-    "-Dglx=disabled",
-    "-Degl=false",
-    "-Ddri-drivers=",
-    "-Dvulkan-drivers=",
-    "-Dgallium-drivers=swrast,swr",
-    "-Dgallium-vdpau=false",
-    "-Dgallium-xvmc=false",
-    "-Dgallium-va=false",
-    "-Dosmesa=gallium",
-    "-Dshared-glapi=true",
-    "-Dc_std=c11",
-    ".."
+      system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
+                      "-Dplatforms=surfaceless", "-Dglx=disabled", ".."
       system "ninja"
       system "ninja", "install"
     end
