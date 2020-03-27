@@ -50,7 +50,7 @@ class Mesa < Formula
       out_file.close
       # system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
       # "-Dplatforms=surfaceless", "-Dglx=disabled", 
-      system "meson", "--prefix=#{prefix}", 
+      system "meson", "setup", --prefix=#{prefix}", 
     "--native-file=custom-llvm.ini",
     "-Dbuildtype=plain", "-Db_ndebug=true",
     "-Dplatforms=",
@@ -68,7 +68,7 @@ class Mesa < Formula
     "-Dgallium-va=false",
     "-Dosmesa=gallium",
     "-Dshared-glapi=true",
-    ".."
+    ".", ".."
       system "ninja"
       system "ninja", "install"
     end
