@@ -1,9 +1,11 @@
 class OpenMpi < Formula
   desc "High performance message passing library"
   homepage "https://www.open-mpi.org/"
-  url "https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.bz2"
-  sha256 "17a69e0054db530c7dc119f75bd07d079efa147cf94bf27e590905864fe379d6"
-
+  # url "https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.bz2"
+  # sha256 "17a69e0054db530c7dc119f75bd07d079efa147cf94bf27e590905864fe379d6"
+  url "https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.6.tar.gz"
+  sha256 "627d350846008dff233ff2acc8542d20000a6abc1daa7277244d060298f88001"
+  
   head do
     url "https://github.com/open-mpi/ompi.git"
     depends_on "autoconf" => :build
