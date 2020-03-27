@@ -43,8 +43,27 @@ class Mesa < Formula
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
-      system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
-                      "-Dplatforms=surfaceless", "-Dglx=disabled", ".."
+      # system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
+      #                 "-Dplatforms=surfaceless", "-Dglx=disabled", ".."
+      system "meson", "--prefix=#{prefix}", 
+                    "-Dbuildtype=plain", "-Db_ndebug=true",
+                    "-Dplatforms=",
+                    "-Dopengl=true",
+                    "-Dgles1=false",
+                    "-Dgbm=false",
+                    "-Dglx=disabled",
+                    "-Degl=false",
+                    "-Ddri-drivers=",
+                    "-Dvulkan-drivers=",
+                    "-Dgallium-drivers=swrast,swr",
+                    "-Dgallium-vdpau=false",
+                    "-Dgallium-xvmc=false",
+                    "-Dgallium-va=false",
+                    "-Dosmesa=gallium",
+                    "-Dshared-glapi=true",
+                    "-Dc_std=c11",
+                    ".."
+
       system "ninja"
       system "ninja", "install"
     end
