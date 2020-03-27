@@ -41,8 +41,6 @@ class Mesa < Formula
       system "python3", *Language::Python.setup_install_args(buildpath/"vendor")
     end
 
-    print "#{PYTHONPATH}"
-
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
