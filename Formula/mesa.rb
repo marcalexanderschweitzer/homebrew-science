@@ -42,6 +42,8 @@ class Mesa < Formula
       system "python3", *Language::Python.setup_install_args(buildpath/"vendor")
     end
 
+    print "#{PYTHONPATH}"
+
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
@@ -49,6 +51,7 @@ class Mesa < Formula
       out_file.puts("[binaries]")
       out_file.puts("llvm-config = '/usr/local/opt/llvm/bin/llvm-config'")
       out_file.close
+
       # system "meson", "-Dbuildtype=plain", "-Db_ndebug=true",
       # "-Dplatforms=surfaceless", "-Dglx=disabled", 
       system "meson", "setup", "--prefix=#{prefix}", 
