@@ -45,6 +45,7 @@ class Mesa < Formula
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
+      cwd = Dir.pwd
       out_file = File.new("./llvm.ini", "w")
       out_file.puts("[binaries]")
       out_file.puts("llvm-config = /usr/local/opt/llvm/bin/llvm-config")
@@ -52,7 +53,7 @@ class Mesa < Formula
       # system "meson", "-Dbuildtype=plain", "-Db_ndebug=true",
       # "-Dplatforms=surfaceless", "-Dglx=disabled", 
       system "meson", "setup", "--prefix=#{prefix}", 
-    "--native-file=./custom-llvm.ini",
+    "--native-file=#{cwd}/custom-llvm.ini",
     "-Dbuildtype=plain", "-Db_ndebug=true",
     "-Dplatforms=",
     "-Dopengl=true",
