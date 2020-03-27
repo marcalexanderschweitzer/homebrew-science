@@ -48,9 +48,9 @@ class Mesa < Formula
       out_file.puts("[binaries]")
       out_file.puts("llvm-config = /usr/local/opt/llvm/bin/llvm-config")
       out_file.close
-      # system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
+      # system "meson", "-Dbuildtype=plain", "-Db_ndebug=true",
       # "-Dplatforms=surfaceless", "-Dglx=disabled", 
-      system "meson", "setup", --prefix=#{prefix}", 
+      system "meson", "setup", "--prefix=#{prefix}", 
     "--native-file=custom-llvm.ini",
     "-Dbuildtype=plain", "-Db_ndebug=true",
     "-Dplatforms=",
