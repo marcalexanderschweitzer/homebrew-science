@@ -14,8 +14,7 @@ class Mesa < Formula
     sha256 "5add0b795f62ee9425d7eebe04ad6889589b3d947d5d3f9f911524321ff445cf" => :high_sierra
   end
 
-  # depends_on "meson-internal" => :build
-  depends_on "meson" => :build
+  depends_on "meson-internal" => :build
   depends_on "ninja" => :build
   depends_on "llvm" => :build
   depends_on "pkg-config" => :build
@@ -47,15 +46,14 @@ class Mesa < Formula
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
-      out_file = File.new("custom-llvm.ini", "w")
-      out_file.puts("[binaries]")
-      out_file.puts("llvm-config = '/usr/local/opt/llvm/bin/llvm-config'")
-      out_file.close
+      # out_file = File.new("custom-llvm.ini", "w")
+      # out_file.puts("[binaries]")
+      # out_file.puts("llvm-config = '/usr/local/opt/llvm/bin/llvm-config'")
+      # out_file.close
 
       # system "meson", "-Dbuildtype=plain", "-Db_ndebug=true",
       # "-Dplatforms=surfaceless", "-Dglx=disabled", 
-      system "meson", "setup", "--prefix=#{prefix}", 
-    "--native-file=custom-llvm.ini",
+      system "meson", "--prefix=#{prefix}", 
     "-Dbuildtype=plain", "-Db_ndebug=true",
     "-Dplatforms=",
     "-Dopengl=true",
