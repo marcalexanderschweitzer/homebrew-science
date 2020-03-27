@@ -59,7 +59,6 @@ class Mesa < Formula
     "-Dgbm=false",
     "-Dglx=disabled",
     "-Degl=false",
-    "-Dllvm=true",
     "-Ddri-drivers=",
     "-Dvulkan-drivers=",
     "-Dgallium-drivers=swrast,swr",
@@ -69,7 +68,7 @@ class Mesa < Formula
     "-Dosmesa=gallium",
     "-Dshared-glapi=true",
     "-Dc_std=c11",
-    ".", ".."
+    ".."
       system "ninja"
       system "ninja", "install"
     end
