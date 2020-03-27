@@ -44,8 +44,8 @@ class Mesa < Formula
     resource("gears.c").stage(pkgshare.to_s)
 
     mkdir "build" do
-      system "echo", "[binaries] > custom-llvm.ini"
-      system "echo", "llvm-config = /usr/local/opt/llvm/bin/llvm-config >> custom-llvm.ini"
+      system "echo", "[binaries]", ">", "custom-llvm.ini"
+      system "echo", "llvm-config = /usr/local/opt/llvm/bin/llvm-config", ">>", "custom-llvm.ini"
       system "meson", "--prefix=#{prefix}", "-Dbuildtype=plain", "-Db_ndebug=true",
     #     "-Dplatforms=surfaceless", "-Dglx=disabled", 
     "--native-file=custom-llvm.ini",
