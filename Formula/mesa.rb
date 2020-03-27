@@ -15,7 +15,7 @@ class Mesa < Formula
   end
 
   # depends_on "meson-internal" => :build
-  depends_on "meson-internal" => :build
+  depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "llvm" => :build
   depends_on "pkg-config" => :build
@@ -24,10 +24,10 @@ class Mesa < Formula
   depends_on "expat"
   depends_on "gettext"
 
-  resource "Mako" do
-    url "https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz"
-    sha256 "2984a6733e1d472796ceef37ad48c26f4a984bb18119bb2dbc37a44d8f6e75a4"
-  end
+  # resource "Mako" do
+  #   url "https://files.pythonhosted.org/packages/28/03/329b21f00243fc2d3815399413845dbbfb0745cff38a29d3597e97f8be58/Mako-1.1.1.tar.gz"
+  #   sha256 "2984a6733e1d472796ceef37ad48c26f4a984bb18119bb2dbc37a44d8f6e75a4"
+  # end
 
   resource "gears.c" do
     url "https://www.opengl.org/archives/resources/code/samples/glut_examples/mesademos/gears.c"
