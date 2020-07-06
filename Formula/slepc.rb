@@ -32,7 +32,7 @@
     arch_real = "real"
     # ENV["PETSC_ARCH"] = arch_real
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_real}"
-    system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+    system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
                           "--prefix=#{prefix}/#{arch_real}",
                           "--with-clean=true"
     system "make"
@@ -42,7 +42,7 @@
     arch_complex = "complex"
     # ENV["PETSC_ARCH"] = arch_complex
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_complex}"
-    system "./configure", "--with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-flags=-lparpack,-larpack",
+    system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
                           "--prefix=#{prefix}/#{arch_complex}",
                           "--with-clean=true"
     system "make"
