@@ -56,11 +56,11 @@
                             "#{prefix}/#{petsc_arch}/finclude", "#{prefix}/#{petsc_arch}/slepc-private"
     lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
     prefix.install_symlink "#{prefix}/#{petsc_arch}/conf"
-    doc.install "docs/slepc.pdf", Dir["docs/*.htm"], "docs/manualpages" # They're not really man pages.
-    pkgshare.install "share/slepc/datafiles"
+    # doc.install "docs/slepc.pdf", Dir["docs/*.htm"], "docs/manualpages" # They're not really man pages.
+    # pkgshare.install "share/slepc/datafiles"
 
     # install some tutorials for use in test block
-    pkgshare.install "src/eps/examples/tutorials"
+    # pkgshare.install "src/eps/examples/tutorials"
   end
 
   def caveats; <<~EOS
