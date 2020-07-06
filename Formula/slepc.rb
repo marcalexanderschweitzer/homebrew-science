@@ -69,14 +69,14 @@
     EOS
   end
 
-  test do
-    cp_r prefix/"share/slepc/tutorials", testpath
-    Dir.chdir("tutorials") do
-      system "mpicc", "ex1.c", "-I#{opt_include}", "-I#{Formula["petsc"].opt_include}", "-L#{Formula["petsc"].opt_lib}", "-lpetsc", "-L#{opt_lib}", "-lslepc", "-o", "ex1"
-      system "mpirun -np 3 ex1 2>&1 | tee ex1.out"
-      `cat ex1.out | tail -3 | awk '{print $NF}'`.split.each do |val|
-        assert val.to_f < 1.0e-8
-      end
-    end
-  end
+  # test do
+  #   cp_r prefix/"share/slepc/tutorials", testpath
+  #   Dir.chdir("tutorials") do
+  #     system "mpicc", "ex1.c", "-I#{opt_include}", "-I#{Formula["petsc"].opt_include}", "-L#{Formula["petsc"].opt_lib}", "-lpetsc", "-L#{opt_lib}", "-lslepc", "-o", "ex1"
+  #     system "mpirun -np 3 ex1 2>&1 | tee ex1.out"
+  #     `cat ex1.out | tail -3 | awk '{print $NF}'`.split.each do |val|
+  #       assert val.to_f < 1.0e-8
+  #     end
+  #   end
+  # end
 end
