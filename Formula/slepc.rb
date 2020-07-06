@@ -12,8 +12,11 @@
   # sha256 "cd6a73ac0c9f689c12f2987000a7a28fa7df53fdc069fb59a2bb148699e741dd"
   # url "http://slepc.upv.es/download/distrib/slepc-3.12.1.tar.gz"
   # sha256 "a1cc2e93a81c9f6b86abd81022c9d64b0dc2161e77fb54b987f963bc292e286d"
-  url "http://slepc.upv.es/download/distrib/slepc-3.12.2.tar.gz"
-  sha256 "a586ce572a928ed87f04961850992a9b8e741677397cbaa3fb028323eddf4598"
+  # url "http://slepc.upv.es/download/distrib/slepc-3.12.2.tar.gz"
+  # sha256 "a586ce572a928ed87f04961850992a9b8e741677397cbaa3fb028323eddf4598"
+  url "https://slepc.upv.es/download/distrib/slepc-3.13.3.tar.gz"
+  sha256 "23d179c22b4b2f22d29fa0ac0a62f5355a964d3bc245a667e9332347c5aa8f81"
+
 
   option "with-blopex", "Download blopex library"
 
