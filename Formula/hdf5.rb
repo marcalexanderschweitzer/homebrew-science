@@ -39,8 +39,10 @@ class Hdf5 < Formula
       --prefix=#{prefix}
       --with-szlib=#{Formula["szip"].opt_prefix}
       --enable-build-mode=production
+      --enable-build-mode=production
+      --enable-fortran
+      --enable-cxx
       --enable-parallel
-      --with-default-api-version=v110
     ]
 
     system "./configure", *args
