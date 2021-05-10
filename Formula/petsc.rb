@@ -29,7 +29,7 @@
   sha256 "87a04fd05cac20a2ec47094b7d18b96e0651257d8c768ced2ef7db270ecfb9cb"
 
   depends_on "cmake"
-  depends_on "marcalexanderschweitzer/science/hdf5"
+  depends_on "hdf5-mpi"
   depends_on "hwloc"
   depends_on "metis"
   depends_on "open-mpi"
