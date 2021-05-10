@@ -26,7 +26,7 @@
   depends_on "marcalexanderschweitzer/science/petsc"
   depends_on "open-mpi"
   depends_on "gcc"
-  depends_on "hdf5"
+  depends_on "marcalexanderschweitzer/science/hdf5"
   depends_on "arpack" => ["with-mpi"]
 
     def install
