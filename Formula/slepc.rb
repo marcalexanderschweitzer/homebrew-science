@@ -22,6 +22,8 @@
   # sha256 "cc78a15e34d26b3e6dde003d4a30064e595225f6185c1975bbd460cb5edd99c7"
   url "https://slepc.upv.es/download/distrib/slepc-3.15.0.tar.gz"
   sha256 "e53783ae13acadce274ea65c67186b5ab12332cf17125a694e21d598aa6b5f00"
+  url "https://slepc.upv.es/download/distrib/slepc-3.16.0.tar.gz"
+  sha256 "5aaad7deea127a4790c8aa95c42fd9451ab10b5d6c68b226b92d4853002f438d"
 
   option "with-blopex", "Download blopex library"
 
