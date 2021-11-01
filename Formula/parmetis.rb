@@ -4,7 +4,7 @@ class Parmetis < Formula
   url "http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz"
   sha256 "f2d9a231b7cf97f1fee6e8c9663113ebf6c240d407d3c118c55b3633d6be6e5f"
 
-  bottle :disable, "needs to be rebuilt with latest open-mpi"
+  # bottle :disable, "needs to be rebuilt with latest open-mpi"
 
   # METIS 5.* is required. It comes bundled with ParMETIS.
   # We prefer to brew it ourselves.
