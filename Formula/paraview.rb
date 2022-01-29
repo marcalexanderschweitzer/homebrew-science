@@ -54,10 +54,11 @@
       -DVTK_MODULE_USE_EXTERNAL_VTK_zlib:BOOL=ON 
       -DHDF5_NO_FIND_PACKAGE_CONFIG_FILE:BOOL=ON
       ]
-       
+
       mkdir "build" do
         system "cmake", "..", *args
         system "make"
         system "make", "install"
       end
+  end
 end
