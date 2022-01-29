@@ -25,7 +25,10 @@
       -DCMAKE_BUILD_TYPE:STRING=Release 
       -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON 
       -DPARAVIEW_USE_MPI:BOOL=ON 
+      -DPARAVIEW_USE_PYTHON:BOOL=ON 
       -DPython3_EXECUTABLE:FILEPATH=#{Formula["python@3.9"].opt_bin}/python3
+      -DPython3_INCLUDE_DIRS:STRING=/usr/local/Frameworks/Python.framework/Versions/Current/include 
+      -DPython3_LIBRARY:STRING=/usr/local/Frameworks/Python.framework/Versions/Current/lib/libpython3.9.dylib
       -DPARAVIEW_ENABLE_XDMF3:BOOL=ON 
       -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON 
       -DVTK_FORBID_DOWNLOADS:BOOL=ON 
