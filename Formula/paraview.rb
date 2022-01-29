@@ -18,8 +18,6 @@
     args = std_cmake_args + %W[
       -DCMAKE_INSTALL_NAME_DIR:STRING=#{opt_lib}
       -DCMAKE_INSTALL_RPATH:STRING=#{rpath}
-      -DBLAS_LIBRARIES=/usr/local/opt/openblas/lib/libblas.dylib
-      -DLAPACK_LIBRARIES=/usr/local/opt/openblas/lib/liblapack.dylib 
       -DCMAKE_Fortran_COMPILER:STRING=gfortran 
       -DQt5_DIR:STRING=/usr/local/opt/qt@5/lib/cmake/Qt5 
       -DBUILD_TESTING:BOOL=OFF 
