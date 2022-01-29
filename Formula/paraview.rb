@@ -1,4 +1,4 @@
- class ParaView < Formula
+ class paraview < Formula
   desc ""
   homepage "https://www.paraview.org/"
   # url "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.10&type=source&os=Sources&downloadFile=ParaView-v5.10.0.tar.xz"
