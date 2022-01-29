@@ -1,7 +1,8 @@
  class ParaView < Formula
   desc ""
   homepage "https://www.paraview.org/"
-  url "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.10&type=source&os=Sources&downloadFile=ParaView-v5.10.0.tar.xz"
+  # url "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.10&type=source&os=Sources&downloadFile=ParaView-v5.10.0.tar.xz"
+  url "https://www.paraview.org/paraview-downloads/ParaView-v5.10.0.tar.xz"
   sha256 "86d85fcbec395cdbc8e1301208d7c76d8f48b15dc6b967ffbbaeee31242343a5"
 
   depends_on "cmake"
