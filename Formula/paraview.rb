@@ -14,21 +14,22 @@
   depends_on "hdf5-mpi"
   depends_on "openblas"
   depends_on "eigen"
+  depends_on "boost"
 
   def install
     args = std_cmake_args + %W[
-      -DCMAKE_INSTALL_NAME_DIR:STRING=#{opt_lib}
-      -DCMAKE_INSTALL_RPATH:STRING=#{rpath}
+      -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
+      -DCMAKE_INSTALL_NAME_DIR:PATH=#{opt_lib}
+      -DCMAKE_INSTALL_RPATH:PATH=#{rpath}
       -DCMAKE_Fortran_COMPILER:STRING=gfortran 
-      -DQt5_DIR:STRING=/usr/local/opt/qt@5/lib/cmake/Qt5 
+      -DQt5_DIR:PATH=/usr/local/opt/qt@5/lib/cmake/Qt5 
       -DBUILD_TESTING:BOOL=OFF 
-      -DCMAKE_BUILD_TYPE:STRING=Release 
       -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON 
       -DPARAVIEW_USE_MPI:BOOL=ON 
       -DPARAVIEW_USE_PYTHON:BOOL=ON 
       -DPython3_EXECUTABLE:FILEPATH=#{Formula["python@3.9"].opt_bin}/python3
-      -DPython3_INCLUDE_DIRS:STRING=/usr/local/Frameworks/Python.framework/Versions/Current/include 
-      -DPython3_LIBRARY:STRING=/usr/local/Frameworks/Python.framework/Versions/Current/lib/libpython3.9.dylib
+      -DPython3_INCLUDE_DIRS:PATH=/usr/local/Frameworks/Python.framework/Versions/Current/include 
+      -DPython3_LIBRARY:FILEPATH=/usr/local/Frameworks/Python.framework/Versions/Current/lib/libpython3.9.dylib
       -DPARAVIEW_ENABLE_XDMF3:BOOL=ON 
       -DPARAVIEW_ENABLE_FFMPEG:BOOL=ON 
       -DVTK_FORBID_DOWNLOADS:BOOL=ON 
@@ -61,7 +62,7 @@
 
       mkdir "build" do
         system "cmake", "..", *args
-        system "make"
+        system "make VERBOSE=1"
         system "make", "install"
       end
   end
