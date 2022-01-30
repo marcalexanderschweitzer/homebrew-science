@@ -18,6 +18,7 @@
 
   def install
     args = std_cmake_args + %W[
+      -G Ninja 
       -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
       -DCMAKE_INSTALL_NAME_DIR:PATH=#{opt_lib}
       -DCMAKE_INSTALL_RPATH:PATH=#{rpath}
@@ -62,8 +63,7 @@
 
       mkdir "build" do
         system "cmake", "..", *args
-        system "make VERBOSE=1"
-        system "make", "install"
+        system "ninja install"
       end
   end
 end
