@@ -6,6 +6,7 @@
   sha256 "86d85fcbec395cdbc8e1301208d7c76d8f48b15dc6b967ffbbaeee31242343a5"
 
   depends_on "cmake"
+  depends_on "ninja"
   depends_on "gcc"
   depends_on "open-mpi"
   depends_on "ffmpeg"
@@ -61,6 +62,11 @@
       -DHDF5_NO_FIND_PACKAGE_CONFIG_FILE:BOOL=ON
       ]
 
+      patch do
+        url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/my_patch_iossvtk_mpi_paraview_5.10.0.patch?raw=true"
+        sha256 "d5347d4fda2926c1af3b52f4d31775dfa47948d89342554a291c91b28755d2a6"
+      end
+      
       mkdir "build" do
         system "cmake", "..", *args
         system "ninja install"
