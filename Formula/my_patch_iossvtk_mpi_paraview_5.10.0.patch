@@ -1,0 +1,11 @@
+diff -urN ./VTK/ThirdParty/ioss/vtkioss/Ioss_CodeTypes.h ../../ParaView-v5.10.0/VTK/ThirdParty/ioss/vtkioss/Ioss_CodeTypes.h
+--- ./VTK/ThirdParty/ioss/vtkioss/Ioss_CodeTypes.h	2021-12-22 22:33:00.000000000 +0100
++++ ../../ParaView-v5.10.0/VTK/ThirdParty/ioss/vtkioss/Ioss_CodeTypes.h	2022-01-03 16:16:34.000000000 +0100
+@@ -68,6 +68,7 @@
+     (void)(x);                                                                                     \
+   } while (0)
+ 
++#include <mpi.h>
+ #ifndef MPI_COMM_SELF
+ #define MPI_COMM_SELF 0
+ #endif
