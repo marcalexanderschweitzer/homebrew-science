@@ -71,5 +71,7 @@ def install
         system "cmake", "..", *args
         system "ninja install"
       end
+
+      bin.install_symlink Applications/paraview.app/Contents/MacOS/"paraview"
   end
 end
