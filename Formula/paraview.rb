@@ -17,7 +17,12 @@
   depends_on "eigen"
   depends_on "boost"
 
-  def install
+patch do
+  url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/my_patch_iossvtk_mpi_paraview_5.10.0.patch?raw=true"
+  sha256 "d5347d4fda2926c1af3b52f4d31775dfa47948d89342554a291c91b28755d2a6"
+end
+  
+def install
     args = std_cmake_args + %W[
       -G Ninja 
       -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
@@ -62,11 +67,6 @@
       -DHDF5_NO_FIND_PACKAGE_CONFIG_FILE:BOOL=ON
       ]
 
-      patch do
-        url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/my_patch_iossvtk_mpi_paraview_5.10.0.patch?raw=true"
-        sha256 "d5347d4fda2926c1af3b52f4d31775dfa47948d89342554a291c91b28755d2a6"
-      end
-      
       mkdir "build" do
         system "cmake", "..", *args
         system "ninja install"
