@@ -5,7 +5,6 @@
   sha256 ""
 
   depends_on "cmake"
-  depends_on "cereal"
 
 def install
     args = std_cmake_args + %W[
