@@ -31,7 +31,8 @@ def install
       -DCMAKE_Fortran_COMPILER:STRING=gfortran 
       -DQt5_DIR:PATH=/usr/local/opt/qt@5/lib/cmake/Qt5 
       -DBUILD_TESTING:BOOL=OFF 
-      -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON 
+      -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
+      -DMACOSX_APP_INSTALL_PREFIX:PATH=#{share}/Applications
       -DPARAVIEW_USE_MPI:BOOL=ON 
       -DPARAVIEW_USE_PYTHON:BOOL=ON 
       -DPython3_EXECUTABLE:FILEPATH=#{Formula["python@3.9"].opt_bin}/python3
@@ -72,6 +73,6 @@ def install
         system "ninja install"
       end
 
-      bin.install_symlink Applications/paraview.app/Contents/MacOS/"paraview"
+      bin.install_symlink #{share}/Applications/paraview.app/Contents/MacOS/"paraview"
   end
 end
