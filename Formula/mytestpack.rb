@@ -1,7 +1,7 @@
  class Mytestpack < Formula
   desc ""
   homepage "https://www.paraview.org/"
-  url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/mytestpack--1.0.0.tar.gz?raw=true"
+  url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/mytestpack-1.0.0.tar.gz?raw=true"
   sha256 ""
 
   depends_on "cmake"
