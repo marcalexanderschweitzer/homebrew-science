@@ -2,7 +2,7 @@
   desc ""
   homepage "https://www.paraview.org/"
   url "https://github.com/marcalexanderschweitzer/homebrew-science/blob/master/Formula/mytestpack-1.0.0.tar.gz?raw=true"
-  sha256 ""
+  sha256 "f30e414c9b73c7b41c75d0ba05e26772fe567c40cc8423822272fd45263460f4"
 
   depends_on "cmake"
 
