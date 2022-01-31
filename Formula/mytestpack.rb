@@ -17,6 +17,6 @@ def install
         system "make install"
       end
 
-    #   bin.install_symlink Applications/paraview.app/Contents/MacOS/"paraview"
+      bin.install_symlink "solver"
   end
 end
