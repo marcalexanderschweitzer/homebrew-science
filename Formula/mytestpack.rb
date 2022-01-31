@@ -15,7 +15,6 @@ def install
         system "cmake", "..", *args
         system "make"
         # system "make install"
-        bin.install "build/test_solver" => "build_mysolver"
         bin.install "test_solver" => "mysolver"
     end
 
