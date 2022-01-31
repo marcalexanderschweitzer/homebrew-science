@@ -8,7 +8,6 @@
 
 def install
     args = std_cmake_args + %W[
-      -G Ninja 
       -DBUILD_TESTING:BOOL=OFF
       ]
 
