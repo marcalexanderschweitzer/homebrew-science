@@ -17,7 +17,7 @@ def install
         # system "make install"
       end
 
-    bin.install "solver" => "mysolver"
+    bin.install "build/solver" => "mysolver"
     bin.install_symlink "mysolver"
   end
 end
