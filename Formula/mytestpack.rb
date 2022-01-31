@@ -14,7 +14,7 @@ def install
       mkdir "build" do
         system "cmake", "..", *args
         system "make"
-        system "make install"
+        # system "make install"
       end
 
     bin.install "solver" => "mysolver"
