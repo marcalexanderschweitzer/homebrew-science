@@ -33,10 +33,10 @@
   # sha256 "5aaad7deea127a4790c8aa95c42fd9451ab10b5d6c68b226b92d4853002f438d"
   # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.16.3.tar.gz"
   # sha256 "eff44c7e7f12991dc7d2b627c477807a215ce16c2ce8a1c78aa8237ddacf6ca5"
-  # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.2.tar.gz"
-  # sha256 "2313dd1ca41bf0ace68671ea6f8d4abf90011ed899f5e1e08658d3f18478359d"
-  url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.4.tar.gz"
-  sha256 "99c127486722a3ffd95a268b4ceb0976cbf217926c681a9631bd7246eab8cb2a"
+  url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.2.tar.gz"
+  sha256 "2313dd1ca41bf0ace68671ea6f8d4abf90011ed899f5e1e08658d3f18478359d"
+  # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.4.tar.gz"
+  # sha256 "99c127486722a3ffd95a268b4ceb0976cbf217926c681a9631bd7246eab8cb2a"
 
   depends_on "cmake"
   depends_on "hdf5-mpi"
@@ -50,15 +50,15 @@
   depends_on "suite-sparse"
 
   def install
-    # ENV["CC"] = "mpicc"
-    # ENV["CXX"] = "mpicxx"
-    # ENV["F77"] = "mpif77"
-    # ENV["FC"] = "mpif90"
+    ENV["CC"] = "mpicc"
+    ENV["CXX"] = "mpicxx"
+    ENV["F77"] = "mpif77"
+    ENV["FC"] = "mpif90"
     ENV["PETSC_DIR"] = Dir.getwd
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    system "./configure", #"CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
@@ -89,7 +89,7 @@
 
     arch_complex = "complex"
     ENV["PETSC_ARCH"] = arch_complex
-    system "./configure", #"CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
