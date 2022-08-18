@@ -58,7 +58,7 @@
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+    system "./configure", #"CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
