@@ -50,15 +50,15 @@
   depends_on "suite-sparse"
 
   def install
-    # ENV["CC"] = "mpicc"
-    # ENV["CXX"] = "mpicxx"
-    # ENV["F77"] = "mpif77"
-    # ENV["FC"] = "mpif90"
+    ENV["CC"] = "mpicc"
+    ENV["CXX"] = "mpicxx"
+    ENV["F77"] = "mpif77"
+    ENV["FC"] = "mpif90"
     ENV["PETSC_DIR"] = Dir.getwd
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    system "./configure", #"CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
+    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
                           "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
@@ -78,8 +78,8 @@
                           # "--with-suitesparse=0",
                           "--with-sundials2=0",
                           "--download-superlu_dist", 
-                          "--download-mumps",
-                          # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Build/mumps/build/_deps/mumps-src",
+                          # "--download-mumps",
+                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Codes/Repositories/mumps/build",
                           "--download-hypre", 
                           # "--download-ml", 
                           "--with-x=0"
@@ -110,8 +110,8 @@
                           # "--with-suitesparse=0",
                           "--with-sundials2=0",
                           "--download-superlu_dist", 
-                          "--download-mumps",
-                          # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Build/mumps/build/_deps/mumps-src",
+                          # "--download-mumps",
+                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Codes/Repositories/mumps/build",
                           # "--download-hypre", 
                           # "--download-ml", 
                           "--with-x=0"
