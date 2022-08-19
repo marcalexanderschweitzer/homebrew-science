@@ -74,7 +74,7 @@
                           "--with-sundials2=0",
                           "--download-superlu_dist", 
                           # "--download-mumps",
-                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Codes/Repositories/mumps/build",
+                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
                           "--download-hypre", 
                           # "--download-ml", 
                           "--with-x=0"
@@ -105,7 +105,7 @@
                           "--with-sundials2=0",
                           "--download-superlu_dist", 
                           # "--download-mumps",
-                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Codes/Repositories/mumps/build",
+                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
                           # "--download-hypre", 
                           # "--download-ml", 
                           "--with-x=0"
