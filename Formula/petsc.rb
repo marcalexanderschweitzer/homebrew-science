@@ -50,16 +50,11 @@
   depends_on "suite-sparse"
 
   def install
-    ENV["CC"] = "mpicc"
-    ENV["CXX"] = "mpicxx"
-    ENV["F77"] = "mpif77"
-    ENV["FC"] = "mpif90"
     ENV["PETSC_DIR"] = Dir.getwd
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
-                          "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90",
+    system "./configure", "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
@@ -90,8 +85,7 @@
 
     arch_complex = "complex"
     ENV["PETSC_ARCH"] = arch_complex
-    system "./configure", "CC=mpicc", "CXX=mpicxx", "FC=mpif90", "F77=mpif77",
-                          "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90",
+    system "./configure", "--with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
