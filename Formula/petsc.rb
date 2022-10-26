@@ -56,7 +56,7 @@
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
     system "./configure", "--with-cc=mpicc", "--with-cxx=mpicxx", "--with-fc=mpif90",
-                          "--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib"
+                          "--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
@@ -88,7 +88,7 @@
     arch_complex = "complex"
     ENV["PETSC_ARCH"] = arch_complex
     system "./configure", "--with-cc=mpicc", "--with-cxx=mpicxx", "--with-fc=mpif90",
-                          "--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib"
+                          "--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib",
                           "--with-shared-libraries=1",
                           "--with-pthread=0",
                           "--with-openmp=0",
