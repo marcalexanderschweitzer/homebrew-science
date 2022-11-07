@@ -50,6 +50,7 @@
   depends_on "marcalexanderschweitzer/science/parmetis"
   # depends_on "netcdf"
   depends_on "superlu"
+  depends_on "marcalexanderschweitzer/science/superlu_dist"
   depends_on "suite-sparse"
   # depends_on "bison" # for ptscotch
 
@@ -73,6 +74,7 @@
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
                           "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          "--with-superlu_dist-dir=#{Formula["superlu_dist"].opt_prefix}",
                           "--with-netcdf=0",
                           "--with-sundials2=0",
                           # "--download-superlu_dist", 
