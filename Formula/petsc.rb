@@ -79,7 +79,7 @@
                           "--download-mumps",
                           # "--download-ptscotch",
                           # "--download-pastix",
-                          "--download-spai",
+                          # "--download-spai",
                           # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
                           "--download-hypre", 
                           # "--download-ml", 
