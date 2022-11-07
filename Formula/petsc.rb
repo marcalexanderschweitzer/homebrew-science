@@ -51,7 +51,7 @@
   # depends_on "netcdf"
   depends_on "superlu"
   depends_on "suite-sparse"
-  depends_on "bison" 
+  # depends_on "bison" # for ptscotch
 
   def install
     system "./configure", 
@@ -59,7 +59,7 @@
                           "--CXX=mpicxx",
                           "--F77=mpif77",
                           "--FC=mpif90",
-                          "--with-pthread",
+                          "--with-pthread=0",
                           "--with-openmp=0",
                           # "--with-cxx-dialect=C++11",
                           # "--prefix=#{prefix}/#{arch_real}",
@@ -68,7 +68,6 @@
                           "--with-scalar-type=real",
                           "--with-hwloc-dir=#{Formula["hwloc"].opt_prefix}",
                           "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
-                          # "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
                           "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
@@ -78,8 +77,8 @@
                           "--with-sundials2=0",
                           # "--download-superlu_dist", 
                           "--download-mumps",
-                          "--download-ptscotch",
-                          "--download-pastix",
+                          # "--download-ptscotch",
+                          # "--download-pastix",
                           "--download-spai",
                           # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
                           "--download-hypre", 
