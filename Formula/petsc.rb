@@ -65,7 +65,7 @@
                           "--prefix=#{prefix}",
                           "--with-debugging=0",
                           "--with-scalar-type=real",
-                          "--with-hwloc-dir==#{Formula["hwloc"].opt_prefix}",
+                          "--with-hwloc-dir=#{Formula["hwloc"].opt_prefix}",
                           "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
                           # "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
                           "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
