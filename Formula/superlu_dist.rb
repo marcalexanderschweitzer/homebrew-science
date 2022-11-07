@@ -1,4 +1,4 @@
- class Superlu_dist < Formula
+ class SuperluDist < Formula
   desc ""
   homepage "https://github.com/xiaoyeli/superlu_dist/"
   version "5.3.0"
