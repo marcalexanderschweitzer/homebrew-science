@@ -33,6 +33,8 @@
   url "https://slepc.upv.es/download/distrib/slepc-3.18.1.tar.gz"
   sha256 f6e6e16d8399c3f94d187da9d4bfdfca160de50ebda7d63f6fa8ef417597e9b4
 
+  option "with-blopex", "Download blopex library"
+
   depends_on "marcalexanderschweitzer/science/petsc"
   depends_on "open-mpi"
   depends_on "gcc"
@@ -40,14 +42,14 @@
   depends_on "arpack" => ["with-mpi"]
 
     def install
-    # ENV["SLEPC_DIR"] = Dir.getwd
+    ENV["SLEPC_DIR"] = Dir.getwd
 
-    # arch_real = "real"
+    arch_real = "real"
     # ENV["PETSC_ARCH"] = arch_real
+    # ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_real}"
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
-    # / #{arch_real}"
     system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
-                          "--prefix=#{prefix}", #/#{arch_real}",
+                          "--prefix=#{prefix}",
                           "--with-clean=true"
     system "make"
     system "make", "test" if build.with? "test"
@@ -63,6 +65,18 @@
     # system "make", "test" if build.with? "test"
     # system "make", "install"
 
+    # Link what we need.
+    # petsc_arch = arch_real
+
+    # include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*.h"],
+    #                         "#{prefix}/#{petsc_arch}/finclude", "#{prefix}/#{petsc_arch}/slepc-private"
+    # lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
+    # prefix.install_symlink "#{prefix}/#{petsc_arch}/conf"
+    # doc.install "docs/slepc.pdf", Dir["docs/*.htm"], "docs/manualpages" # They're not really man pages.
+    # pkgshare.install "share/slepc/datafiles"
+
+    # install some tutorials for use in test block
+    # pkgshare.install "src/eps/examples/tutorials"
   end
 
   def caveats; <<~EOS
@@ -71,4 +85,14 @@
     EOS
   end
 
+  # test do
+  #   cp_r prefix/"share/slepc/tutorials", testpath
+  #   Dir.chdir("tutorials") do
+  #     system "mpicc", "ex1.c", "-I#{opt_include}", "-I#{Formula["petsc"].opt_include}", "-L#{Formula["petsc"].opt_lib}", "-lpetsc", "-L#{opt_lib}", "-lslepc", "-o", "ex1"
+  #     system "mpirun -np 3 ex1 2>&1 | tee ex1.out"
+  #     `cat ex1.out | tail -3 | awk '{print $NF}'`.split.each do |val|
+  #       assert val.to_f < 1.0e-8
+  #     end
+  #   end
+  # end
 end
