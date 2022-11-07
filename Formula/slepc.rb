@@ -43,7 +43,7 @@
 
   def install
     ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}"
-    system "./configure", "--with-arpack=1", "--with-arpack-dir=#{Formula["arpack"].opt_lib}"
+    system "./configure", "--with-arpack=1", "--with-arpack-dir=#{Formula["arpack"].opt_lib}",
                           "--prefix=#{prefix}",
                           "--with-clean=true"
     system "make"
