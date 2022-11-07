@@ -19,14 +19,13 @@
       -DBUILD_SHARED_LIBS=ON
       -DBUILD_STATIC_LIBS=OFF
       -DTPL_ENABLE_PARMETISLIB=ON
+      -DTPL_PARMETIS_INCLUDE_DIRS=#{Formula["parmetis"].opt_include}\;#{Formula["metis"].opt_include}
+      -DTPL_PARMETIS_LIBRARIES=#{Formula["parmetis"].opt_lib}/libparmetis.dylib\;#{Formula["metis"].opt_lib}/libmetis.dylib
       -DTPL_ENABLE_INTERNAL_BLASLIB=OFF
       -DTPL_BLAS_LIBRARIES=#{Formula["openblas"].opt_lib}/libopenblas.dylib
       -DXSDK_ENABLE_Fortran=OFF
       -Denable_openmp=OFF
     ]
-
-    args << "\"-DTPL_PARMETIS_INCLUDE_DIRS=#{Formula["parmetis"].opt_include};#{Formula["metis"].opt_include}\""
-    args << "\"-DTPL_PARMETIS_LIBRARIES=#{Formula["parmetis"].opt_lib}/libparmetis.dylib;#{Formula["metis"].opt_lib}/libmetis.dylib\""
 
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
     system "cmake", "--build", "build"
