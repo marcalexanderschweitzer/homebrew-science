@@ -33,21 +33,23 @@
   # sha256 "5aaad7deea127a4790c8aa95c42fd9451ab10b5d6c68b226b92d4853002f438d"
   # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.16.3.tar.gz"
   # sha256 "eff44c7e7f12991dc7d2b627c477807a215ce16c2ce8a1c78aa8237ddacf6ca5"
-  url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.2.tar.gz"
-  sha256 "2313dd1ca41bf0ace68671ea6f8d4abf90011ed899f5e1e08658d3f18478359d"
+  # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.2.tar.gz"
+  # sha256 "2313dd1ca41bf0ace68671ea6f8d4abf90011ed899f5e1e08658d3f18478359d"
   # url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.17.4.tar.gz"
   # sha256 "99c127486722a3ffd95a268b4ceb0976cbf217926c681a9631bd7246eab8cb2a"
+  url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.18.1.tar.gz"
+  sha256 "02f5979a22f5961bb775d527f8450db77bc6a8d2541f3b05fb586829b82e9bc8"
 
   depends_on "cmake"
   depends_on "hdf5-mpi"
   depends_on "hwloc"
   depends_on "metis"
   depends_on "open-mpi"
-  depends_on "openblas"
+  # depends_on "openblas"
   depends_on "scalapack"
   depends_on "marcalexanderschweitzer/science/parmetis"
   # depends_on "netcdf"
-  # depends_on "superlu"
+  depends_on "superlu"
   depends_on "suite-sparse"
 
   def install
@@ -55,12 +57,14 @@
 
     arch_real = "real"
     ENV["PETSC_ARCH"] = arch_real
-    system "./configure", "--with-cc=mpicc", "--with-cxx=mpicxx", "--with-fc=mpif90",
-                          "--download-openblas", #"--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib",
-                          "--with-shared-libraries=1",
+    system "./configure", 
+                          "--CC=mpicc",
+                          "--CXX=mpicxx",
+                          "--F77=mpif77",
+                          "--FC=mpif90",
                           "--with-pthread=0",
                           "--with-openmp=0",
-                          "--with-cxx-dialect=C++11",
+                          # "--with-cxx-dialect=C++11",
                           "--prefix=#{prefix}/#{arch_real}",
                           "--with-debugging=0",
                           "--with-scalar-type=real",
@@ -70,7 +74,7 @@
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
                           "--with-metis-dir=#{Formula["metis"].opt_prefix}",
                           "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
-                          # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+                          "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
                           "--with-netcdf=0",
                           # "--with-suitesparse=0",
                           "--with-sundials2=0",
@@ -83,55 +87,83 @@
     system "make", "all"
     system "make", "install"
 
-    system "make", "distclean"
+    # Avoid references to Homebrew shims
+    rm_f lib/"petsc/conf/configure-hash"
 
-    arch_complex = "complex"
-    ENV["PETSC_ARCH"] = arch_complex
-    system "./configure", "--with-cc=mpicc", "--with-cxx=mpicxx", "--with-fc=mpif90",
-                          "--download-openblas", #"--with-blaslapack-lib=/opt/homebrew/opt/openblas/lib/libopenblas.dylib",
-                          "--with-shared-libraries=1",
-                          "--with-pthread=0",
-                          "--with-openmp=0",
-                          "--with-cxx-dialect=C++11",
-                          "--prefix=#{prefix}/#{arch_complex}",
-                          "--with-debugging=0",
-                          "--with-scalar-type=complex",
-                          "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
-                          # "--with-netcdf-dir=#{Formula["netcdf"].opt_prefix}",
-                          "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
-                          "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
-                          "--with-metis-dir=#{Formula["metis"].opt_prefix}",
-                          "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
-                          # "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
-                          "--with-netcdf=0",
-                          # "--with-suitesparse=0",
-                          "--with-sundials2=0",
-                          "--download-superlu_dist", 
-                          "--download-mumps",
-                          # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
-                          # "--download-hypre", 
-                          # "--download-ml", 
-                          "--with-x=0"
-    system "make", "all"
-    system "make", "install"
-
-    petsc_arch = arch_real
-    include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*h"],
-                                "#{prefix}/#{petsc_arch}/include/finclude",
-                                "#{prefix}/#{petsc_arch}/include/petsc-private"
-    lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
-    pkgshare.install_symlink Dir["#{prefix}/#{petsc_arch}/share/*"]
+    if OS.mac? || File.foreach("#{lib}/petsc/conf/petscvariables").any? { |l| l[Superenv.shims_path.to_s] }
+      inreplace lib/"petsc/conf/petscvariables", "#{Superenv.shims_path}/", ""
+    end
   end
 
   test do
-    test_case = "#{pkgshare}/examples/src/ksp/ksp/examples/tutorials/ex1.c"
-    system "mpicc", test_case, "-I#{include}", "-L#{lib}", "-lpetsc", "-o", "test"
+    flags = %W[-I#{include} -L#{lib} -lpetsc]
+    flags << "-Wl,-rpath,#{lib}" if OS.linux?
+    system "mpicc", pkgshare/"examples/src/ksp/ksp/tutorials/ex1.c", "-o", "test", *flags
     output = shell_output("./test")
     # This PETSc example prints several lines of output. The last line contains
     # an error norm, expected to be small.
     line = output.lines.last
-    assert_match /^Norm of error .+, Iterations/, line, "Unexpected output format"
+    assert_match(/^Norm of error .+, Iterations/, line, "Unexpected output format")
     error = line.split[3].to_f
     assert (error >= 0.0 && error < 1.0e-13), "Error norm too large"
   end
 end
+
+    # system "make", "distclean"
+
+    # arch_complex = "complex"
+    # ENV["PETSC_ARCH"] = arch_complex
+    # system "./configure",
+    #                       "--CC=mpicc",
+    #                       "--CXX=mpicxx",
+    #                       "--F77=mpif77",
+    #                       "--FC=mpif90",
+    #                       "--with-pthread=0",
+    #                       "--with-openmp=0",
+    #                       # "--with-cxx-dialect=C++11",
+    #                       "--prefix=#{prefix}/#{arch_complex}",
+    #                       "--with-debugging=0",
+    #                       "--with-scalar-type=complex",
+    #                       "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
+    #                       "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
+    #                       "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
+    #                       "--with-metis-dir=#{Formula["metis"].opt_prefix}",
+    #                       "--with-parmetis-dir=#{Formula["parmetis"].opt_prefix}",
+    #                       "--with-superlu-dir=#{Formula["superlu"].opt_prefix}",
+    #                       "--with-netcdf=0",
+    #                       "--with-sundials2=0",
+    #                       "--download-superlu_dist", 
+    #                       "--download-mumps",
+    #                       "--with-x=0"
+
+    # system "make", "all"
+    # system "make", "install"
+
+  #   petsc_arch = arch_real
+  #   # Avoid references to Homebrew shims
+  #   rm_f lib/"petsc/conf/configure-hash"
+
+  #   if OS.mac? || File.foreach("#{lib}/petsc/conf/petscvariables").any? { |l| l[Superenv.shims_path.to_s] }
+  #     inreplace lib/"petsc/conf/petscvariables", "#{Superenv.shims_path}/", ""
+  #   end
+  # end
+
+#   include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*h"],
+#                                 "#{prefix}/#{petsc_arch}/include/finclude",
+#                                 "#{prefix}/#{petsc_arch}/include/petsc-private"
+#     lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
+#     pkgshare.install_symlink Dir["#{prefix}/#{petsc_arch}/share/*"]
+#   end
+
+#   test do
+#     test_case = "#{pkgshare}/examples/src/ksp/ksp/examples/tutorials/ex1.c"
+#     system "mpicc", test_case, "-I#{include}", "-L#{lib}", "-lpetsc", "-o", "test"
+#     output = shell_output("./test")
+#     # This PETSc example prints several lines of output. The last line contains
+#     # an error norm, expected to be small.
+#     line = output.lines.last
+#     assert_match /^Norm of error .+, Iterations/, line, "Unexpected output format"
+#     error = line.split[3].to_f
+#     assert (error >= 0.0 && error < 1.0e-13), "Error norm too large"
+#   end
+# end
