@@ -28,10 +28,10 @@
   # sha256 "b1a8ad8db1ad88c60616e661ab48fc235d5a8b6965023cb6d691b9a2cfa94efb"
   # url "https://slepc.upv.es/download/distrib/slepc-3.17.1.tar.gz"
   # sha256 "11386cd3f4c0f9727af3c1c59141cc4bf5f83bdf7c50251de0845e406816f575"
-  url "https://slepc.upv.es/download/distrib/slepc-3.17.2.tar.gz"
-  sha256 "f784cca83a14156631d6e0f5726ca0778e259e1fe40c927607d5fb12d958d705"
-
-  option "with-blopex", "Download blopex library"
+  # url "https://slepc.upv.es/download/distrib/slepc-3.17.2.tar.gz"
+  # sha256 "f784cca83a14156631d6e0f5726ca0778e259e1fe40c927607d5fb12d958d705"
+  url "https://slepc.upv.es/download/distrib/slepc-3.18.1.tar.gz"
+  sha256 f6e6e16d8399c3f94d187da9d4bfdfca160de50ebda7d63f6fa8ef417597e9b4
 
   depends_on "marcalexanderschweitzer/science/petsc"
   depends_on "open-mpi"
@@ -40,40 +40,28 @@
   depends_on "arpack" => ["with-mpi"]
 
     def install
-    ENV["SLEPC_DIR"] = Dir.getwd
+    # ENV["SLEPC_DIR"] = Dir.getwd
 
-    arch_real = "real"
+    # arch_real = "real"
     # ENV["PETSC_ARCH"] = arch_real
-    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_real}"
+    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}", #/#{arch_real}"
     system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
-                          "--prefix=#{prefix}/#{arch_real}",
+                          "--prefix=#{prefix}", #/#{arch_real}",
                           "--with-clean=true"
     system "make"
     system "make", "test" if build.with? "test"
     system "make", "install"
 
-    arch_complex = "complex"
-    # ENV["PETSC_ARCH"] = arch_complex
-    ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_complex}"
-    system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
-                          "--prefix=#{prefix}/#{arch_complex}",
-                          "--with-clean=true"
-    system "make"
-    system "make", "test" if build.with? "test"
-    system "make", "install"
+    # arch_complex = "complex"
+    # # ENV["PETSC_ARCH"] = arch_complex
+    # ENV["PETSC_DIR"] = "#{Formula["petsc"].opt_prefix}/#{arch_complex}"
+    # system "./configure", "--with-arpack=1 --with-arpack-dir=#{Formula["arpack"].opt_lib}", "--with-arpack-lib=-lparpack,-larpack",
+    #                       "--prefix=#{prefix}/#{arch_complex}",
+    #                       "--with-clean=true"
+    # system "make"
+    # system "make", "test" if build.with? "test"
+    # system "make", "install"
 
-    # Link what we need.
-    petsc_arch = arch_real
-
-    include.install_symlink Dir["#{prefix}/#{petsc_arch}/include/*.h"],
-                            "#{prefix}/#{petsc_arch}/finclude", "#{prefix}/#{petsc_arch}/slepc-private"
-    lib.install_symlink Dir["#{prefix}/#{petsc_arch}/lib/*.*"]
-    prefix.install_symlink "#{prefix}/#{petsc_arch}/conf"
-    # doc.install "docs/slepc.pdf", Dir["docs/*.htm"], "docs/manualpages" # They're not really man pages.
-    # pkgshare.install "share/slepc/datafiles"
-
-    # install some tutorials for use in test block
-    # pkgshare.install "src/eps/examples/tutorials"
   end
 
   def caveats; <<~EOS
@@ -82,14 +70,4 @@
     EOS
   end
 
-  # test do
-  #   cp_r prefix/"share/slepc/tutorials", testpath
-  #   Dir.chdir("tutorials") do
-  #     system "mpicc", "ex1.c", "-I#{opt_include}", "-I#{Formula["petsc"].opt_include}", "-L#{Formula["petsc"].opt_lib}", "-lpetsc", "-L#{opt_lib}", "-lslepc", "-o", "ex1"
-  #     system "mpirun -np 3 ex1 2>&1 | tee ex1.out"
-  #     `cat ex1.out | tail -3 | awk '{print $NF}'`.split.each do |val|
-  #       assert val.to_f < 1.0e-8
-  #     end
-  #   end
-  # end
 end
