@@ -45,7 +45,7 @@
   depends_on "hwloc"
   depends_on "metis"
   depends_on "open-mpi"
-  # depends_on "openblas"
+  depends_on "openblas"
   depends_on "scalapack"
   depends_on "marcalexanderschweitzer/science/parmetis"
   # depends_on "netcdf"
@@ -53,10 +53,6 @@
   depends_on "suite-sparse"
 
   def install
-    ENV["PETSC_DIR"] = Dir.getwd
-
-    arch_real = "real"
-    ENV["PETSC_ARCH"] = arch_real
     system "./configure", 
                           "--CC=mpicc",
                           "--CXX=mpicxx",
@@ -78,7 +74,7 @@
                           "--with-netcdf=0",
                           # "--with-suitesparse=0",
                           "--with-sundials2=0",
-                          "--download-superlu_dist", 
+                          # "--download-superlu_dist", 
                           "--download-mumps",
                           # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
                           "--download-hypre", 
