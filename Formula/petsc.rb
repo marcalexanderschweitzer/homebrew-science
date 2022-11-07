@@ -51,7 +51,8 @@
   # depends_on "netcdf"
   depends_on "superlu"
   depends_on "suite-sparse"
-
+  depends_on "bison" 
+  
   def install
     system "./configure", 
                           "--CC=mpicc",
