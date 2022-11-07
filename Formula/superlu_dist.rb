@@ -8,6 +8,7 @@
   depends_on "cmake"
   depends_on "metis"
   depends_on "openblas"
+  depends_on "gcc"
   depends_on "open-mpi"
   depends_on "marcalexanderschweitzer/science/parmetis"
 
@@ -18,11 +19,14 @@
       -DCMAKE_CXX_COMPILER=#{Formula["open-mpi"].opt_bin}/mpicxx
       -DCMAKE_CXX_FLAGS=-std=c++11 
       -DBUILD_SHARED_LIBS=ON
+      -DBUILD_STATIC_LIBS=OFF
       -DTPL_ENABLE_PARMETISLIB=ON
-      -DTPL_PARMETIS_INCLUDE_DIRS=#{Formula["parmetis"].opt_include}
-      -DTPL_PARMETIS_LIBRARIES=#{Formula["parmetis"].opt_lib}/libparmetis.dylib
+      "-DTPL_PARMETIS_INCLUDE_DIRS=#{Formula["parmetis"].opt_include};#{Formula["metis"].opt_include}"
+      "-DTPL_PARMETIS_LIBRARIES=#{Formula["parmetis"].opt_lib}/libparmetis.dylib;#{Formula["metis"].opt_lib}/libmetis.dylib"
       -DTPL_ENABLE_INTERNAL_BLASLIB=OFF
       -DTPL_BLAS_LIBRARIES=#{Formula["openblas"].opt_lib}/libopenblas.dylib
+      -DXSDK_ENABLE_Fortran=OFF
+      -Denable_openmp=OFF
     ]
 
     system "cmake", "-S", ".", "-B", "build", *std_cmake_args, *args
