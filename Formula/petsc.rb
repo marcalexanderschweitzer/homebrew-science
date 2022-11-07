@@ -76,6 +76,7 @@
                           "--with-sundials2=0",
                           # "--download-superlu_dist", 
                           "--download-mumps",
+                          "--download-ptscotch",
                           "--download-pastix",
                           "--download-spai",
                           # "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1.3",
