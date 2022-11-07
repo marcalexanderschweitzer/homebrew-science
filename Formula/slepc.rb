@@ -41,7 +41,7 @@
   depends_on "hdf5-mpi"
   depends_on "arpack" => ["with-mpi"]
 
-    def install
+  def install
     ENV["SLEPC_DIR"] = Dir.getwd
 
     arch_real = "real"
