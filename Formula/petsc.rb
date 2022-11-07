@@ -52,14 +52,14 @@
   depends_on "superlu"
   depends_on "suite-sparse"
   depends_on "bison" 
-  
+
   def install
     system "./configure", 
                           "--CC=mpicc",
                           "--CXX=mpicxx",
                           "--F77=mpif77",
                           "--FC=mpif90",
-                          "--with-pthread=0",
+                          "--with-pthread",
                           "--with-openmp=0",
                           # "--with-cxx-dialect=C++11",
                           # "--prefix=#{prefix}/#{arch_real}",
