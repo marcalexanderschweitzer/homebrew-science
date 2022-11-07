@@ -19,8 +19,8 @@
       -DCMAKE_CXX_COMPILER="#{Formula["open-mpi"].opt_bin}/mpicxx"
       -DCMAKE_CXX_FLAGS="-std=c++11" 
       -DTPL_ENABLE_PARMETISLIB=ON
-      -DTPL_PARMETIS_INCLUDE_DIRS="#{Formula["parmetis"].opt_include};#{Formula["metis"].opt_include}"
-      -DTPL_PARMETIS_LIBRARIES="#{Formula["parmetis"].opt_lib}/libparmetis.dylib;#{Formula["metis"].opt_lib}/libmetis.dylib"
+      -DTPL_PARMETIS_INCLUDE_DIRS="#{Formula["parmetis"].opt_include}"
+      -DTPL_PARMETIS_LIBRARIES="#{Formula["parmetis"].opt_lib}/libparmetis.dylib"
       -DTPL_BLAS_LIBRARIES="#{Formula["openblas"].opt_lib}/libopenblas.dylib"
     ]
 
