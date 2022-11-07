@@ -15,7 +15,7 @@
 
 
     args = %W[
-      -TPL_ENABLE_PARMETISLIB=ON
+      -DTPL_ENABLE_PARMETISLIB=ON
       -DTPL_PARMETIS_INCLUDE_DIRS="#{Formula["parmetis"].opt_include};#{Formula["metis"].opt_include};"
       -DTPL_PARMETIS_LIBRARIES="#{Formula["parmetis"].opt_lib}/libparmetis.dylib;#{Formula["metis"].opt_lib}/libmetis.dylib"
       -DTPL_BLAS_LIBRARIES="#{Formula["openblas"].opt_lib}/libopenblas.dylib"
