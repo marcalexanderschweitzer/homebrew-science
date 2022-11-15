@@ -40,7 +40,6 @@
   url "https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.18.1.tar.gz"
   sha256 "02f5979a22f5961bb775d527f8450db77bc6a8d2541f3b05fb586829b82e9bc8"
 
-  depends_on "cmake"
   depends_on "hdf5-mpi"
   depends_on "hwloc"
   depends_on "metis"
@@ -68,6 +67,7 @@
                           "--with-debugging=0",
                           "--with-scalar-type=real",
                           "--with-hwloc-dir=#{Formula["hwloc"].opt_prefix}",
+                          "--with-openblas-dir=#{Formula["openblas"].opt_prefix}",
                           "--with-scalapack-dir=#{Formula["scalapack"].opt_prefix}",
                           "--with-hdf5-dir=#{Formula["hdf5-mpi"].opt_prefix}",
                           "--with-suitesparse-dir=#{Formula["suite-sparse"].opt_prefix}",
@@ -77,8 +77,7 @@
                           "--with-superlu_dist-dir=#{Formula["superlu_dist"].opt_prefix}",
                           "--with-netcdf=0",
                           "--with-sundials2=0",
-                          # "--download-superlu_dist", 
-                          "--download-mumps",
+                          # "--download-mumps",
                           # "--download-ptscotch",
                           # "--download-pastix",
                           # "--download-spai",
