@@ -77,6 +77,7 @@
                           "--with-superlu_dist-dir=#{Formula["superlu_dist"].opt_prefix}",
                           "--with-netcdf=0",
                           "--with-sundials2=0",
+                          "--with-mumps-dir=/Users/marcalexanderschweitzer/Tools/Science/mumps-5.5.1",
                           # "--download-mumps",
                           # "--download-ptscotch",
                           # "--download-pastix",
